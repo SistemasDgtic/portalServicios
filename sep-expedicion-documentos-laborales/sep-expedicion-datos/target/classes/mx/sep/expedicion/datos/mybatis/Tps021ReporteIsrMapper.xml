@@ -1,0 +1,449 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="mx.sep.expedicion.dao.Tps021ReporteIsrMapper" >
+  <resultMap id="BaseResultMap" type="mx.sep.expedicion.modelo.Tps021ReporteIsr" >
+    <id column="id_rep_isr" property="idRepIsr" jdbcType="INTEGER" />
+    <result column="rfc" property="rfc" jdbcType="CHAR" />
+    <result column="anio" property="anio" jdbcType="SMALLINT" />
+    <result column="nombre" property="nombre" jdbcType="VARCHAR" />
+    <result column="curp" property="curp" jdbcType="CHAR" />
+    <result column="ing_anual_sueldo" property="ingAnualSueldo" jdbcType="DECIMAL" />
+    <result column="ing_exc_sueldo" property="ingExcSueldo" jdbcType="DECIMAL" />
+    <result column="ing_acum_sueldo" property="ingAcumSueldo" jdbcType="DECIMAL" />
+    <result column="subsidio_sueldo" property="subsidioSueldo" jdbcType="DECIMAL" />
+    <result column="imp_ret_sueldo" property="impRetSueldo" jdbcType="DECIMAL" />
+    <result column="ing_anual_honor" property="ingAnualHonor" jdbcType="DECIMAL" />
+    <result column="ing_exc_honor" property="ingExcHonor" jdbcType="DECIMAL" />
+    <result column="ing_acum_honor" property="ingAcumHonor" jdbcType="DECIMAL" />
+    <result column="subsidio_honor" property="subsidioHonor" jdbcType="DECIMAL" />
+    <result column="imp_ret_honor" property="impRetHonor" jdbcType="DECIMAL" />
+    <result column="ing_anual_separa" property="ingAnualSepara" jdbcType="DECIMAL" />
+    <result column="ing_exc_separa" property="ingExcSepara" jdbcType="DECIMAL" />
+    <result column="ing_acum_separa" property="ingAcumSepara" jdbcType="DECIMAL" />
+    <result column="subsidio_separa" property="subsidioSepara" jdbcType="DECIMAL" />
+    <result column="imp_ret_separa" property="impRetSepara" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id_rep_isr, rfc, anio, nombre, curp, ing_anual_sueldo, ing_exc_sueldo, ing_acum_sueldo, 
+    subsidio_sueldo, imp_ret_sueldo, ing_anual_honor, ing_exc_honor, ing_acum_honor, 
+    subsidio_honor, imp_ret_honor, ing_anual_separa, ing_exc_separa, ing_acum_separa, 
+    subsidio_separa, imp_ret_separa
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="mx.sep.expedicion.modelo.Tps021ReporteIsrExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tps021_reporte_isr
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tps021_reporte_isr
+    where id_rep_isr = #{idRepIsr,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tps021_reporte_isr
+    where id_rep_isr = #{idRepIsr,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="mx.sep.expedicion.modelo.Tps021ReporteIsrExample" >
+    delete from tps021_reporte_isr
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="mx.sep.expedicion.modelo.Tps021ReporteIsr" >
+    insert into tps021_reporte_isr (id_rep_isr, rfc, anio, 
+      nombre, curp, ing_anual_sueldo, 
+      ing_exc_sueldo, ing_acum_sueldo, subsidio_sueldo, 
+      imp_ret_sueldo, ing_anual_honor, ing_exc_honor, 
+      ing_acum_honor, subsidio_honor, imp_ret_honor, 
+      ing_anual_separa, ing_exc_separa, ing_acum_separa, 
+      subsidio_separa, imp_ret_separa)
+    values (#{idRepIsr,jdbcType=INTEGER}, #{rfc,jdbcType=CHAR}, #{anio,jdbcType=SMALLINT}, 
+      #{nombre,jdbcType=VARCHAR}, #{curp,jdbcType=CHAR}, #{ingAnualSueldo,jdbcType=DECIMAL}, 
+      #{ingExcSueldo,jdbcType=DECIMAL}, #{ingAcumSueldo,jdbcType=DECIMAL}, #{subsidioSueldo,jdbcType=DECIMAL}, 
+      #{impRetSueldo,jdbcType=DECIMAL}, #{ingAnualHonor,jdbcType=DECIMAL}, #{ingExcHonor,jdbcType=DECIMAL}, 
+      #{ingAcumHonor,jdbcType=DECIMAL}, #{subsidioHonor,jdbcType=DECIMAL}, #{impRetHonor,jdbcType=DECIMAL}, 
+      #{ingAnualSepara,jdbcType=DECIMAL}, #{ingExcSepara,jdbcType=DECIMAL}, #{ingAcumSepara,jdbcType=DECIMAL}, 
+      #{subsidioSepara,jdbcType=DECIMAL}, #{impRetSepara,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="mx.sep.expedicion.modelo.Tps021ReporteIsr" >
+    insert into tps021_reporte_isr
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="idRepIsr != null" >
+        id_rep_isr,
+      </if>
+      <if test="rfc != null" >
+        rfc,
+      </if>
+      <if test="anio != null" >
+        anio,
+      </if>
+      <if test="nombre != null" >
+        nombre,
+      </if>
+      <if test="curp != null" >
+        curp,
+      </if>
+      <if test="ingAnualSueldo != null" >
+        ing_anual_sueldo,
+      </if>
+      <if test="ingExcSueldo != null" >
+        ing_exc_sueldo,
+      </if>
+      <if test="ingAcumSueldo != null" >
+        ing_acum_sueldo,
+      </if>
+      <if test="subsidioSueldo != null" >
+        subsidio_sueldo,
+      </if>
+      <if test="impRetSueldo != null" >
+        imp_ret_sueldo,
+      </if>
+      <if test="ingAnualHonor != null" >
+        ing_anual_honor,
+      </if>
+      <if test="ingExcHonor != null" >
+        ing_exc_honor,
+      </if>
+      <if test="ingAcumHonor != null" >
+        ing_acum_honor,
+      </if>
+      <if test="subsidioHonor != null" >
+        subsidio_honor,
+      </if>
+      <if test="impRetHonor != null" >
+        imp_ret_honor,
+      </if>
+      <if test="ingAnualSepara != null" >
+        ing_anual_separa,
+      </if>
+      <if test="ingExcSepara != null" >
+        ing_exc_separa,
+      </if>
+      <if test="ingAcumSepara != null" >
+        ing_acum_separa,
+      </if>
+      <if test="subsidioSepara != null" >
+        subsidio_separa,
+      </if>
+      <if test="impRetSepara != null" >
+        imp_ret_separa,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="idRepIsr != null" >
+        #{idRepIsr,jdbcType=INTEGER},
+      </if>
+      <if test="rfc != null" >
+        #{rfc,jdbcType=CHAR},
+      </if>
+      <if test="anio != null" >
+        #{anio,jdbcType=SMALLINT},
+      </if>
+      <if test="nombre != null" >
+        #{nombre,jdbcType=VARCHAR},
+      </if>
+      <if test="curp != null" >
+        #{curp,jdbcType=CHAR},
+      </if>
+      <if test="ingAnualSueldo != null" >
+        #{ingAnualSueldo,jdbcType=DECIMAL},
+      </if>
+      <if test="ingExcSueldo != null" >
+        #{ingExcSueldo,jdbcType=DECIMAL},
+      </if>
+      <if test="ingAcumSueldo != null" >
+        #{ingAcumSueldo,jdbcType=DECIMAL},
+      </if>
+      <if test="subsidioSueldo != null" >
+        #{subsidioSueldo,jdbcType=DECIMAL},
+      </if>
+      <if test="impRetSueldo != null" >
+        #{impRetSueldo,jdbcType=DECIMAL},
+      </if>
+      <if test="ingAnualHonor != null" >
+        #{ingAnualHonor,jdbcType=DECIMAL},
+      </if>
+      <if test="ingExcHonor != null" >
+        #{ingExcHonor,jdbcType=DECIMAL},
+      </if>
+      <if test="ingAcumHonor != null" >
+        #{ingAcumHonor,jdbcType=DECIMAL},
+      </if>
+      <if test="subsidioHonor != null" >
+        #{subsidioHonor,jdbcType=DECIMAL},
+      </if>
+      <if test="impRetHonor != null" >
+        #{impRetHonor,jdbcType=DECIMAL},
+      </if>
+      <if test="ingAnualSepara != null" >
+        #{ingAnualSepara,jdbcType=DECIMAL},
+      </if>
+      <if test="ingExcSepara != null" >
+        #{ingExcSepara,jdbcType=DECIMAL},
+      </if>
+      <if test="ingAcumSepara != null" >
+        #{ingAcumSepara,jdbcType=DECIMAL},
+      </if>
+      <if test="subsidioSepara != null" >
+        #{subsidioSepara,jdbcType=DECIMAL},
+      </if>
+      <if test="impRetSepara != null" >
+        #{impRetSepara,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="mx.sep.expedicion.modelo.Tps021ReporteIsrExample" resultType="java.lang.Integer" >
+    select count(*) from tps021_reporte_isr
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update tps021_reporte_isr
+    <set >
+      <if test="record.idRepIsr != null" >
+        id_rep_isr = #{record.idRepIsr,jdbcType=INTEGER},
+      </if>
+      <if test="record.rfc != null" >
+        rfc = #{record.rfc,jdbcType=CHAR},
+      </if>
+      <if test="record.anio != null" >
+        anio = #{record.anio,jdbcType=SMALLINT},
+      </if>
+      <if test="record.nombre != null" >
+        nombre = #{record.nombre,jdbcType=VARCHAR},
+      </if>
+      <if test="record.curp != null" >
+        curp = #{record.curp,jdbcType=CHAR},
+      </if>
+      <if test="record.ingAnualSueldo != null" >
+        ing_anual_sueldo = #{record.ingAnualSueldo,jdbcType=DECIMAL},
+      </if>
+      <if test="record.ingExcSueldo != null" >
+        ing_exc_sueldo = #{record.ingExcSueldo,jdbcType=DECIMAL},
+      </if>
+      <if test="record.ingAcumSueldo != null" >
+        ing_acum_sueldo = #{record.ingAcumSueldo,jdbcType=DECIMAL},
+      </if>
+      <if test="record.subsidioSueldo != null" >
+        subsidio_sueldo = #{record.subsidioSueldo,jdbcType=DECIMAL},
+      </if>
+      <if test="record.impRetSueldo != null" >
+        imp_ret_sueldo = #{record.impRetSueldo,jdbcType=DECIMAL},
+      </if>
+      <if test="record.ingAnualHonor != null" >
+        ing_anual_honor = #{record.ingAnualHonor,jdbcType=DECIMAL},
+      </if>
+      <if test="record.ingExcHonor != null" >
+        ing_exc_honor = #{record.ingExcHonor,jdbcType=DECIMAL},
+      </if>
+      <if test="record.ingAcumHonor != null" >
+        ing_acum_honor = #{record.ingAcumHonor,jdbcType=DECIMAL},
+      </if>
+      <if test="record.subsidioHonor != null" >
+        subsidio_honor = #{record.subsidioHonor,jdbcType=DECIMAL},
+      </if>
+      <if test="record.impRetHonor != null" >
+        imp_ret_honor = #{record.impRetHonor,jdbcType=DECIMAL},
+      </if>
+      <if test="record.ingAnualSepara != null" >
+        ing_anual_separa = #{record.ingAnualSepara,jdbcType=DECIMAL},
+      </if>
+      <if test="record.ingExcSepara != null" >
+        ing_exc_separa = #{record.ingExcSepara,jdbcType=DECIMAL},
+      </if>
+      <if test="record.ingAcumSepara != null" >
+        ing_acum_separa = #{record.ingAcumSepara,jdbcType=DECIMAL},
+      </if>
+      <if test="record.subsidioSepara != null" >
+        subsidio_separa = #{record.subsidioSepara,jdbcType=DECIMAL},
+      </if>
+      <if test="record.impRetSepara != null" >
+        imp_ret_separa = #{record.impRetSepara,jdbcType=DECIMAL},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update tps021_reporte_isr
+    set id_rep_isr = #{record.idRepIsr,jdbcType=INTEGER},
+      rfc = #{record.rfc,jdbcType=CHAR},
+      anio = #{record.anio,jdbcType=SMALLINT},
+      nombre = #{record.nombre,jdbcType=VARCHAR},
+      curp = #{record.curp,jdbcType=CHAR},
+      ing_anual_sueldo = #{record.ingAnualSueldo,jdbcType=DECIMAL},
+      ing_exc_sueldo = #{record.ingExcSueldo,jdbcType=DECIMAL},
+      ing_acum_sueldo = #{record.ingAcumSueldo,jdbcType=DECIMAL},
+      subsidio_sueldo = #{record.subsidioSueldo,jdbcType=DECIMAL},
+      imp_ret_sueldo = #{record.impRetSueldo,jdbcType=DECIMAL},
+      ing_anual_honor = #{record.ingAnualHonor,jdbcType=DECIMAL},
+      ing_exc_honor = #{record.ingExcHonor,jdbcType=DECIMAL},
+      ing_acum_honor = #{record.ingAcumHonor,jdbcType=DECIMAL},
+      subsidio_honor = #{record.subsidioHonor,jdbcType=DECIMAL},
+      imp_ret_honor = #{record.impRetHonor,jdbcType=DECIMAL},
+      ing_anual_separa = #{record.ingAnualSepara,jdbcType=DECIMAL},
+      ing_exc_separa = #{record.ingExcSepara,jdbcType=DECIMAL},
+      ing_acum_separa = #{record.ingAcumSepara,jdbcType=DECIMAL},
+      subsidio_separa = #{record.subsidioSepara,jdbcType=DECIMAL},
+      imp_ret_separa = #{record.impRetSepara,jdbcType=DECIMAL}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="mx.sep.expedicion.modelo.Tps021ReporteIsr" >
+    update tps021_reporte_isr
+    <set >
+      <if test="rfc != null" >
+        rfc = #{rfc,jdbcType=CHAR},
+      </if>
+      <if test="anio != null" >
+        anio = #{anio,jdbcType=SMALLINT},
+      </if>
+      <if test="nombre != null" >
+        nombre = #{nombre,jdbcType=VARCHAR},
+      </if>
+      <if test="curp != null" >
+        curp = #{curp,jdbcType=CHAR},
+      </if>
+      <if test="ingAnualSueldo != null" >
+        ing_anual_sueldo = #{ingAnualSueldo,jdbcType=DECIMAL},
+      </if>
+      <if test="ingExcSueldo != null" >
+        ing_exc_sueldo = #{ingExcSueldo,jdbcType=DECIMAL},
+      </if>
+      <if test="ingAcumSueldo != null" >
+        ing_acum_sueldo = #{ingAcumSueldo,jdbcType=DECIMAL},
+      </if>
+      <if test="subsidioSueldo != null" >
+        subsidio_sueldo = #{subsidioSueldo,jdbcType=DECIMAL},
+      </if>
+      <if test="impRetSueldo != null" >
+        imp_ret_sueldo = #{impRetSueldo,jdbcType=DECIMAL},
+      </if>
+      <if test="ingAnualHonor != null" >
+        ing_anual_honor = #{ingAnualHonor,jdbcType=DECIMAL},
+      </if>
+      <if test="ingExcHonor != null" >
+        ing_exc_honor = #{ingExcHonor,jdbcType=DECIMAL},
+      </if>
+      <if test="ingAcumHonor != null" >
+        ing_acum_honor = #{ingAcumHonor,jdbcType=DECIMAL},
+      </if>
+      <if test="subsidioHonor != null" >
+        subsidio_honor = #{subsidioHonor,jdbcType=DECIMAL},
+      </if>
+      <if test="impRetHonor != null" >
+        imp_ret_honor = #{impRetHonor,jdbcType=DECIMAL},
+      </if>
+      <if test="ingAnualSepara != null" >
+        ing_anual_separa = #{ingAnualSepara,jdbcType=DECIMAL},
+      </if>
+      <if test="ingExcSepara != null" >
+        ing_exc_separa = #{ingExcSepara,jdbcType=DECIMAL},
+      </if>
+      <if test="ingAcumSepara != null" >
+        ing_acum_separa = #{ingAcumSepara,jdbcType=DECIMAL},
+      </if>
+      <if test="subsidioSepara != null" >
+        subsidio_separa = #{subsidioSepara,jdbcType=DECIMAL},
+      </if>
+      <if test="impRetSepara != null" >
+        imp_ret_separa = #{impRetSepara,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where id_rep_isr = #{idRepIsr,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="mx.sep.expedicion.modelo.Tps021ReporteIsr" >
+    update tps021_reporte_isr
+    set rfc = #{rfc,jdbcType=CHAR},
+      anio = #{anio,jdbcType=SMALLINT},
+      nombre = #{nombre,jdbcType=VARCHAR},
+      curp = #{curp,jdbcType=CHAR},
+      ing_anual_sueldo = #{ingAnualSueldo,jdbcType=DECIMAL},
+      ing_exc_sueldo = #{ingExcSueldo,jdbcType=DECIMAL},
+      ing_acum_sueldo = #{ingAcumSueldo,jdbcType=DECIMAL},
+      subsidio_sueldo = #{subsidioSueldo,jdbcType=DECIMAL},
+      imp_ret_sueldo = #{impRetSueldo,jdbcType=DECIMAL},
+      ing_anual_honor = #{ingAnualHonor,jdbcType=DECIMAL},
+      ing_exc_honor = #{ingExcHonor,jdbcType=DECIMAL},
+      ing_acum_honor = #{ingAcumHonor,jdbcType=DECIMAL},
+      subsidio_honor = #{subsidioHonor,jdbcType=DECIMAL},
+      imp_ret_honor = #{impRetHonor,jdbcType=DECIMAL},
+      ing_anual_separa = #{ingAnualSepara,jdbcType=DECIMAL},
+      ing_exc_separa = #{ingExcSepara,jdbcType=DECIMAL},
+      ing_acum_separa = #{ingAcumSepara,jdbcType=DECIMAL},
+      subsidio_separa = #{subsidioSepara,jdbcType=DECIMAL},
+      imp_ret_separa = #{impRetSepara,jdbcType=DECIMAL}
+    where id_rep_isr = #{idRepIsr,jdbcType=INTEGER}
+  </update>
+</mapper>

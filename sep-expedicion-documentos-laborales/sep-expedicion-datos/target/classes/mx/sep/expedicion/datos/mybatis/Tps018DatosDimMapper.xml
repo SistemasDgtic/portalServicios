@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="mx.sep.expedicion.dao.Tps018DatosDimMapper" >
+  <resultMap id="BaseResultMap" type="mx.sep.expedicion.modelo.Tps018DatosDim" >
+    <id column="id_datos" property="idDatos" jdbcType="INTEGER" />
+    <result column="anio" property="anio" jdbcType="INTEGER" />
+    <result column="num_folio" property="numFolio" jdbcType="CHAR" />
+    <result column="fecha_presentacion" property="fechaPresentacion" jdbcType="DATE" />
+    <result column="usuario" property="usuario" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id_datos, anio, num_folio, fecha_presentacion, usuario
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="mx.sep.expedicion.modelo.Tps018DatosDimExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tps018_datos_dim
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tps018_datos_dim
+    where id_datos = #{idDatos,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tps018_datos_dim
+    where id_datos = #{idDatos,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="mx.sep.expedicion.modelo.Tps018DatosDimExample" >
+    delete from tps018_datos_dim
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="mx.sep.expedicion.modelo.Tps018DatosDim" >
+    insert into tps018_datos_dim (id_datos, anio, num_folio, 
+      fecha_presentacion, usuario)
+    values (#{idDatos,jdbcType=INTEGER}, #{anio,jdbcType=INTEGER}, #{numFolio,jdbcType=CHAR}, 
+      #{fechaPresentacion,jdbcType=DATE}, #{usuario,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="mx.sep.expedicion.modelo.Tps018DatosDim" >
+    insert into tps018_datos_dim
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="idDatos != null" >
+        id_datos,
+      </if>
+      <if test="anio != null" >
+        anio,
+      </if>
+      <if test="numFolio != null" >
+        num_folio,
+      </if>
+      <if test="fechaPresentacion != null" >
+        fecha_presentacion,
+      </if>
+      <if test="usuario != null" >
+        usuario,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="idDatos != null" >
+        #{idDatos,jdbcType=INTEGER},
+      </if>
+      <if test="anio != null" >
+        #{anio,jdbcType=INTEGER},
+      </if>
+      <if test="numFolio != null" >
+        #{numFolio,jdbcType=CHAR},
+      </if>
+      <if test="fechaPresentacion != null" >
+        #{fechaPresentacion,jdbcType=DATE},
+      </if>
+      <if test="usuario != null" >
+        #{usuario,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="mx.sep.expedicion.modelo.Tps018DatosDimExample" resultType="java.lang.Integer" >
+    select count(*) from tps018_datos_dim
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update tps018_datos_dim
+    <set >
+      <if test="record.idDatos != null" >
+        id_datos = #{record.idDatos,jdbcType=INTEGER},
+      </if>
+      <if test="record.anio != null" >
+        anio = #{record.anio,jdbcType=INTEGER},
+      </if>
+      <if test="record.numFolio != null" >
+        num_folio = #{record.numFolio,jdbcType=CHAR},
+      </if>
+      <if test="record.fechaPresentacion != null" >
+        fecha_presentacion = #{record.fechaPresentacion,jdbcType=DATE},
+      </if>
+      <if test="record.usuario != null" >
+        usuario = #{record.usuario,jdbcType=CHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update tps018_datos_dim
+    set id_datos = #{record.idDatos,jdbcType=INTEGER},
+      anio = #{record.anio,jdbcType=INTEGER},
+      num_folio = #{record.numFolio,jdbcType=CHAR},
+      fecha_presentacion = #{record.fechaPresentacion,jdbcType=DATE},
+      usuario = #{record.usuario,jdbcType=CHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="mx.sep.expedicion.modelo.Tps018DatosDim" >
+    update tps018_datos_dim
+    <set >
+      <if test="anio != null" >
+        anio = #{anio,jdbcType=INTEGER},
+      </if>
+      <if test="numFolio != null" >
+        num_folio = #{numFolio,jdbcType=CHAR},
+      </if>
+      <if test="fechaPresentacion != null" >
+        fecha_presentacion = #{fechaPresentacion,jdbcType=DATE},
+      </if>
+      <if test="usuario != null" >
+        usuario = #{usuario,jdbcType=CHAR},
+      </if>
+    </set>
+    where id_datos = #{idDatos,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="mx.sep.expedicion.modelo.Tps018DatosDim" >
+    update tps018_datos_dim
+    set anio = #{anio,jdbcType=INTEGER},
+      num_folio = #{numFolio,jdbcType=CHAR},
+      fecha_presentacion = #{fechaPresentacion,jdbcType=DATE},
+      usuario = #{usuario,jdbcType=CHAR}
+    where id_datos = #{idDatos,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="mx.sep.expedicion.dao.Tps021QnasAguinaldoMapper" >
+  <resultMap id="BaseResultMap" type="mx.sep.expedicion.modelo.Tps021QnasAguinaldo" >
+    <id column="qna_proc" property="qnaProc" jdbcType="INTEGER" />
+    <result column="cons_qna_proc" property="consQnaProc" jdbcType="SMALLINT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    qna_proc, cons_qna_proc
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="mx.sep.expedicion.modelo.Tps021QnasAguinaldoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tps021_qnas_aguinaldo
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tps021_qnas_aguinaldo
+    where qna_proc = #{qnaProc,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tps021_qnas_aguinaldo
+    where qna_proc = #{qnaProc,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="mx.sep.expedicion.modelo.Tps021QnasAguinaldoExample" >
+    delete from tps021_qnas_aguinaldo
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="mx.sep.expedicion.modelo.Tps021QnasAguinaldo" >
+    insert into tps021_qnas_aguinaldo (qna_proc, cons_qna_proc)
+    values (#{qnaProc,jdbcType=INTEGER}, #{consQnaProc,jdbcType=SMALLINT})
+  </insert>
+  <insert id="insertSelective" parameterType="mx.sep.expedicion.modelo.Tps021QnasAguinaldo" >
+    insert into tps021_qnas_aguinaldo
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="qnaProc != null" >
+        qna_proc,
+      </if>
+      <if test="consQnaProc != null" >
+        cons_qna_proc,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="qnaProc != null" >
+        #{qnaProc,jdbcType=INTEGER},
+      </if>
+      <if test="consQnaProc != null" >
+        #{consQnaProc,jdbcType=SMALLINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="mx.sep.expedicion.modelo.Tps021QnasAguinaldoExample" resultType="java.lang.Integer" >
+    select count(*) from tps021_qnas_aguinaldo
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update tps021_qnas_aguinaldo
+    <set >
+      <if test="record.qnaProc != null" >
+        qna_proc = #{record.qnaProc,jdbcType=INTEGER},
+      </if>
+      <if test="record.consQnaProc != null" >
+        cons_qna_proc = #{record.consQnaProc,jdbcType=SMALLINT},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update tps021_qnas_aguinaldo
+    set qna_proc = #{record.qnaProc,jdbcType=INTEGER},
+      cons_qna_proc = #{record.consQnaProc,jdbcType=SMALLINT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="mx.sep.expedicion.modelo.Tps021QnasAguinaldo" >
+    update tps021_qnas_aguinaldo
+    <set >
+      <if test="consQnaProc != null" >
+        cons_qna_proc = #{consQnaProc,jdbcType=SMALLINT},
+      </if>
+    </set>
+    where qna_proc = #{qnaProc,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="mx.sep.expedicion.modelo.Tps021QnasAguinaldo" >
+    update tps021_qnas_aguinaldo
+    set cons_qna_proc = #{consQnaProc,jdbcType=SMALLINT}
+    where qna_proc = #{qnaProc,jdbcType=INTEGER}
+  </update>
+</mapper>

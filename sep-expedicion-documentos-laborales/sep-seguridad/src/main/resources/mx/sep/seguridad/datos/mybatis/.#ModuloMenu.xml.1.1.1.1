@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mx.sep.seguridad.dao.ModuloMenuDao">
+
+	<resultMap type="ModuloMenu" id="resultModuloMenu">
+		<id property="id" column="id_t_opcion"/>
+		<result property="modulo" column="v_opcion"/>
+	</resultMap>
+
+	<select id="consultarTodos" resultMap="resultModuloMenu">
+		select * from t_seg_menu where id_t_opcion_padre is null
+		and id_t_opcion IN (
+		    select distinct oi.object_id_identity from acl_object_identity oi 
+		    where oi.owner_sid = ( select r.id from acl_sid r where r.sid = #{role} )
+		    and oi.entries_inheriting = 't'
+		)
+	</select>
+
+	<select id="consultarModulo" resultMap="resultModuloMenu">
+		select * from t_seg_menu where id_t_opcion = #{id};
+	</select>
+</mapper>

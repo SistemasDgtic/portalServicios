@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="mx.sep.expedicion.dao.Tsp005PeriodosMapper" >
+  <resultMap id="BaseResultMap" type="mx.sep.expedicion.modelo.Tsp005Periodos" >
+    <id column="anio" property="anio" jdbcType="SMALLINT" />
+    <id column="mes" property="mes" jdbcType="SMALLINT" />
+    <id column="quincena" property="quincena" jdbcType="SMALLINT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    anio, mes, quincena
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="mx.sep.expedicion.modelo.Tsp005PeriodosExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tsp005_periodos
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="map" >
+    delete from tsp005_periodos
+    where anio = #{anio,jdbcType=SMALLINT}
+      and mes = #{mes,jdbcType=SMALLINT}
+      and quincena = #{quincena,jdbcType=SMALLINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="mx.sep.expedicion.modelo.Tsp005PeriodosExample" >
+    delete from tsp005_periodos
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="mx.sep.expedicion.modelo.Tsp005Periodos" >
+    insert into tsp005_periodos (anio, mes, quincena
+      )
+    values (#{anio,jdbcType=SMALLINT}, #{mes,jdbcType=SMALLINT}, #{quincena,jdbcType=SMALLINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="mx.sep.expedicion.modelo.Tsp005Periodos" >
+    insert into tsp005_periodos
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="anio != null" >
+        anio,
+      </if>
+      <if test="mes != null" >
+        mes,
+      </if>
+      <if test="quincena != null" >
+        quincena,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="anio != null" >
+        #{anio,jdbcType=SMALLINT},
+      </if>
+      <if test="mes != null" >
+        #{mes,jdbcType=SMALLINT},
+      </if>
+      <if test="quincena != null" >
+        #{quincena,jdbcType=SMALLINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="mx.sep.expedicion.modelo.Tsp005PeriodosExample" resultType="java.lang.Integer" >
+    select count(*) from tsp005_periodos
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update tsp005_periodos
+    <set >
+      <if test="record.anio != null" >
+        anio = #{record.anio,jdbcType=SMALLINT},
+      </if>
+      <if test="record.mes != null" >
+        mes = #{record.mes,jdbcType=SMALLINT},
+      </if>
+      <if test="record.quincena != null" >
+        quincena = #{record.quincena,jdbcType=SMALLINT},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update tsp005_periodos
+    set anio = #{record.anio,jdbcType=SMALLINT},
+      mes = #{record.mes,jdbcType=SMALLINT},
+      quincena = #{record.quincena,jdbcType=SMALLINT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+		http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans-3.1.xsd">
+
+    <!-- Aqui se agregan las vistas que usarán los controllers para generar jasper reports. -->
+    <bean id="repComprobantePago"
+              class="org.springframework.web.servlet.view.jasperreports.JasperReportsPdfView">
+        <property name="url" value="/WEB-INF/classes/mx/sep/expedicion/reportes/${up.comprobante}.jasper"/>
+        <property name="reportDataKey" value="dataSourceKey"/>
+        <property name="headers">
+            <props>
+                <prop key="Content-Disposition">        
+                    attachment; filename=comprobante_pago.pdf
+                </prop>
+            </props>
+        </property>
+    </bean>        
+    <bean id="repFormulario37"
+              class="org.springframework.web.servlet.view.jasperreports.JasperReportsPdfView">
+        <property name="url" value="/WEB-INF/classes/mx/sep/expedicion/reportes/repFormulario37.jasper"/>
+        <property name="reportDataKey" value="dataSourceKey"/>
+        <property name="headers">
+            <props>
+                <prop key="Content-Disposition">        
+                    attachment; filename=formulario_37.pdf
+                </prop>
+            </props>
+        </property>
+    </bean>
+    <bean id="repResumen"
+              class="org.springframework.web.servlet.view.jasperreports.JasperReportsPdfView">
+        <property name="url" value="/WEB-INF/classes/mx/sep/expedicion/reportes/repResumen.jasper"/>
+        <property name="reportDataKey" value="dataSourceKey"/>
+        <property name="headers">
+            <props>
+                <prop key="Content-Disposition">        
+                    attachment; filename=resumen.pdf
+                </prop>
+            </props>
+        </property>
+    </bean>
+    <bean id="repComprobantePagoCpto24"
+              class="org.springframework.web.servlet.view.jasperreports.JasperReportsPdfView">
+        <property name="url" value="/WEB-INF/classes/mx/sep/expedicion/reportes/${up.comprobante24}.jasper"/>
+        <property name="reportDataKey" value="dataSourceKey"/>
+        <property name="headers">
+            <props>
+                <prop key="Content-Disposition">        
+                    attachment; filename=comprobante_pago.pdf
+                </prop>
+            </props>
+        </property>
+    </bean>   
+    <bean id="repReporteAnualIng"
+              class="org.springframework.web.servlet.view.jasperreports.JasperReportsPdfView">
+        <property name="url" value="/WEB-INF/classes/mx/sep/expedicion/reportes/repReporteAnualIng.jasper"/>
+        <property name="reportDataKey" value="dataSourceKey"/>
+        <property name="headers">
+            <props>
+                <prop key="Content-Disposition">        
+                    attachment; filename=anual_ingresos.pdf
+                </prop>
+            </props>
+        </property>
+    </bean>         
+</beans>

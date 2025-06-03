@@ -1,0 +1,481 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="mx.sep.expedicion.dao.Tps003ComprobanteMapper" >
+  <resultMap id="BaseResultMap" type="mx.sep.expedicion.modelo.Tps003Comprobante" >
+    <id column="id_comprobante" property="idComprobante" jdbcType="INTEGER" />
+    <result column="num_comprobante" property="numComprobante" jdbcType="INTEGER" />
+    <result column="rfc" property="rfc" jdbcType="CHAR" />
+    <result column="cve_unica" property="cveUnica" jdbcType="CHAR" />
+    <result column="nombre" property="nombre" jdbcType="VARCHAR" />
+    <result column="clave_presupuestal" property="clavePresupuestal" jdbcType="CHAR" />
+    <result column="centro_trabajo" property="centroTrabajo" jdbcType="CHAR" />
+    <result column="id_tipo_nomina" property="idTipoNomina" jdbcType="CHAR" />
+    <result column="fecha_ini" property="fechaIni" jdbcType="TIMESTAMP" />
+    <result column="fecha_fin" property="fechaFin" jdbcType="TIMESTAMP" />
+    <result column="fecha_pago" property="fechaPago" jdbcType="TIMESTAMP" />
+    <result column="qna_proc" property="qnaProc" jdbcType="INTEGER" />
+    <result column="cons_qna_proc" property="consQnaProc" jdbcType="SMALLINT" />
+    <result column="tot_perc_cheque" property="totPercCheque" jdbcType="DECIMAL" />
+    <result column="tot_ded_cheque" property="totDedCheque" jdbcType="DECIMAL" />
+    <result column="tot_neto_cheque" property="totNetoCheque" jdbcType="DECIMAL" />
+    <result column="num_perc" property="numPerc" jdbcType="SMALLINT" />
+    <result column="num_desc" property="numDesc" jdbcType="SMALLINT" />
+    <result column="clabe_inter" property="clabeInter" jdbcType="CHAR" />
+    <result column="mensaje_impresion" property="mensajeImpresion" jdbcType="VARCHAR" />
+    <result column="codigo_seguridad" property="codigoSeguridad" jdbcType="VARCHAR" />
+    <result column="numero_ss" property="numeroSs" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id_comprobante, num_comprobante, rfc, cve_unica, nombre, clave_presupuestal, centro_trabajo, 
+    id_tipo_nomina, fecha_ini, fecha_fin, fecha_pago, qna_proc, cons_qna_proc, tot_perc_cheque, 
+    tot_ded_cheque, tot_neto_cheque, num_perc, num_desc, clabe_inter, mensaje_impresion, 
+    codigo_seguridad, numero_ss
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="mx.sep.expedicion.modelo.Tps003ComprobanteExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tps003_comprobante
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tps003_comprobante
+    where id_comprobante = #{idComprobante,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tps003_comprobante
+    where id_comprobante = #{idComprobante,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="mx.sep.expedicion.modelo.Tps003ComprobanteExample" >
+    delete from tps003_comprobante
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="mx.sep.expedicion.modelo.Tps003Comprobante" >
+    insert into tps003_comprobante (id_comprobante, num_comprobante, rfc, 
+      cve_unica, nombre, clave_presupuestal, 
+      centro_trabajo, id_tipo_nomina, fecha_ini, 
+      fecha_fin, fecha_pago, qna_proc, 
+      cons_qna_proc, tot_perc_cheque, tot_ded_cheque, 
+      tot_neto_cheque, num_perc, num_desc, 
+      clabe_inter, mensaje_impresion, codigo_seguridad, 
+      numero_ss)
+    values (#{idComprobante,jdbcType=INTEGER}, #{numComprobante,jdbcType=INTEGER}, #{rfc,jdbcType=CHAR}, 
+      #{cveUnica,jdbcType=CHAR}, #{nombre,jdbcType=VARCHAR}, #{clavePresupuestal,jdbcType=CHAR}, 
+      #{centroTrabajo,jdbcType=CHAR}, #{idTipoNomina,jdbcType=CHAR}, #{fechaIni,jdbcType=TIMESTAMP}, 
+      #{fechaFin,jdbcType=TIMESTAMP}, #{fechaPago,jdbcType=TIMESTAMP}, #{qnaProc,jdbcType=INTEGER}, 
+      #{consQnaProc,jdbcType=SMALLINT}, #{totPercCheque,jdbcType=DECIMAL}, #{totDedCheque,jdbcType=DECIMAL}, 
+      #{totNetoCheque,jdbcType=DECIMAL}, #{numPerc,jdbcType=SMALLINT}, #{numDesc,jdbcType=SMALLINT}, 
+      #{clabeInter,jdbcType=CHAR}, #{mensajeImpresion,jdbcType=VARCHAR}, #{codigoSeguridad,jdbcType=VARCHAR}, 
+      #{numeroSs,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="mx.sep.expedicion.modelo.Tps003Comprobante" >
+    insert into tps003_comprobante
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="idComprobante != null" >
+        id_comprobante,
+      </if>
+      <if test="numComprobante != null" >
+        num_comprobante,
+      </if>
+      <if test="rfc != null" >
+        rfc,
+      </if>
+      <if test="cveUnica != null" >
+        cve_unica,
+      </if>
+      <if test="nombre != null" >
+        nombre,
+      </if>
+      <if test="clavePresupuestal != null" >
+        clave_presupuestal,
+      </if>
+      <if test="centroTrabajo != null" >
+        centro_trabajo,
+      </if>
+      <if test="idTipoNomina != null" >
+        id_tipo_nomina,
+      </if>
+      <if test="fechaIni != null" >
+        fecha_ini,
+      </if>
+      <if test="fechaFin != null" >
+        fecha_fin,
+      </if>
+      <if test="fechaPago != null" >
+        fecha_pago,
+      </if>
+      <if test="qnaProc != null" >
+        qna_proc,
+      </if>
+      <if test="consQnaProc != null" >
+        cons_qna_proc,
+      </if>
+      <if test="totPercCheque != null" >
+        tot_perc_cheque,
+      </if>
+      <if test="totDedCheque != null" >
+        tot_ded_cheque,
+      </if>
+      <if test="totNetoCheque != null" >
+        tot_neto_cheque,
+      </if>
+      <if test="numPerc != null" >
+        num_perc,
+      </if>
+      <if test="numDesc != null" >
+        num_desc,
+      </if>
+      <if test="clabeInter != null" >
+        clabe_inter,
+      </if>
+      <if test="mensajeImpresion != null" >
+        mensaje_impresion,
+      </if>
+      <if test="codigoSeguridad != null" >
+        codigo_seguridad,
+      </if>
+      <if test="numeroSs != null" >
+        numero_ss,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="idComprobante != null" >
+        #{idComprobante,jdbcType=INTEGER},
+      </if>
+      <if test="numComprobante != null" >
+        #{numComprobante,jdbcType=INTEGER},
+      </if>
+      <if test="rfc != null" >
+        #{rfc,jdbcType=CHAR},
+      </if>
+      <if test="cveUnica != null" >
+        #{cveUnica,jdbcType=CHAR},
+      </if>
+      <if test="nombre != null" >
+        #{nombre,jdbcType=VARCHAR},
+      </if>
+      <if test="clavePresupuestal != null" >
+        #{clavePresupuestal,jdbcType=CHAR},
+      </if>
+      <if test="centroTrabajo != null" >
+        #{centroTrabajo,jdbcType=CHAR},
+      </if>
+      <if test="idTipoNomina != null" >
+        #{idTipoNomina,jdbcType=CHAR},
+      </if>
+      <if test="fechaIni != null" >
+        #{fechaIni,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fechaFin != null" >
+        #{fechaFin,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fechaPago != null" >
+        #{fechaPago,jdbcType=TIMESTAMP},
+      </if>
+      <if test="qnaProc != null" >
+        #{qnaProc,jdbcType=INTEGER},
+      </if>
+      <if test="consQnaProc != null" >
+        #{consQnaProc,jdbcType=SMALLINT},
+      </if>
+      <if test="totPercCheque != null" >
+        #{totPercCheque,jdbcType=DECIMAL},
+      </if>
+      <if test="totDedCheque != null" >
+        #{totDedCheque,jdbcType=DECIMAL},
+      </if>
+      <if test="totNetoCheque != null" >
+        #{totNetoCheque,jdbcType=DECIMAL},
+      </if>
+      <if test="numPerc != null" >
+        #{numPerc,jdbcType=SMALLINT},
+      </if>
+      <if test="numDesc != null" >
+        #{numDesc,jdbcType=SMALLINT},
+      </if>
+      <if test="clabeInter != null" >
+        #{clabeInter,jdbcType=CHAR},
+      </if>
+      <if test="mensajeImpresion != null" >
+        #{mensajeImpresion,jdbcType=VARCHAR},
+      </if>
+      <if test="codigoSeguridad != null" >
+        #{codigoSeguridad,jdbcType=VARCHAR},
+      </if>
+      <if test="numeroSs != null" >
+        #{numeroSs,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="mx.sep.expedicion.modelo.Tps003ComprobanteExample" resultType="java.lang.Integer" >
+    select count(*) from tps003_comprobante
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update tps003_comprobante
+    <set >
+      <if test="record.idComprobante != null" >
+        id_comprobante = #{record.idComprobante,jdbcType=INTEGER},
+      </if>
+      <if test="record.numComprobante != null" >
+        num_comprobante = #{record.numComprobante,jdbcType=INTEGER},
+      </if>
+      <if test="record.rfc != null" >
+        rfc = #{record.rfc,jdbcType=CHAR},
+      </if>
+      <if test="record.cveUnica != null" >
+        cve_unica = #{record.cveUnica,jdbcType=CHAR},
+      </if>
+      <if test="record.nombre != null" >
+        nombre = #{record.nombre,jdbcType=VARCHAR},
+      </if>
+      <if test="record.clavePresupuestal != null" >
+        clave_presupuestal = #{record.clavePresupuestal,jdbcType=CHAR},
+      </if>
+      <if test="record.centroTrabajo != null" >
+        centro_trabajo = #{record.centroTrabajo,jdbcType=CHAR},
+      </if>
+      <if test="record.idTipoNomina != null" >
+        id_tipo_nomina = #{record.idTipoNomina,jdbcType=CHAR},
+      </if>
+      <if test="record.fechaIni != null" >
+        fecha_ini = #{record.fechaIni,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.fechaFin != null" >
+        fecha_fin = #{record.fechaFin,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.fechaPago != null" >
+        fecha_pago = #{record.fechaPago,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.qnaProc != null" >
+        qna_proc = #{record.qnaProc,jdbcType=INTEGER},
+      </if>
+      <if test="record.consQnaProc != null" >
+        cons_qna_proc = #{record.consQnaProc,jdbcType=SMALLINT},
+      </if>
+      <if test="record.totPercCheque != null" >
+        tot_perc_cheque = #{record.totPercCheque,jdbcType=DECIMAL},
+      </if>
+      <if test="record.totDedCheque != null" >
+        tot_ded_cheque = #{record.totDedCheque,jdbcType=DECIMAL},
+      </if>
+      <if test="record.totNetoCheque != null" >
+        tot_neto_cheque = #{record.totNetoCheque,jdbcType=DECIMAL},
+      </if>
+      <if test="record.numPerc != null" >
+        num_perc = #{record.numPerc,jdbcType=SMALLINT},
+      </if>
+      <if test="record.numDesc != null" >
+        num_desc = #{record.numDesc,jdbcType=SMALLINT},
+      </if>
+      <if test="record.clabeInter != null" >
+        clabe_inter = #{record.clabeInter,jdbcType=CHAR},
+      </if>
+      <if test="record.mensajeImpresion != null" >
+        mensaje_impresion = #{record.mensajeImpresion,jdbcType=VARCHAR},
+      </if>
+      <if test="record.codigoSeguridad != null" >
+        codigo_seguridad = #{record.codigoSeguridad,jdbcType=VARCHAR},
+      </if>
+      <if test="record.numeroSs != null" >
+        numero_ss = #{record.numeroSs,jdbcType=CHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update tps003_comprobante
+    set id_comprobante = #{record.idComprobante,jdbcType=INTEGER},
+      num_comprobante = #{record.numComprobante,jdbcType=INTEGER},
+      rfc = #{record.rfc,jdbcType=CHAR},
+      cve_unica = #{record.cveUnica,jdbcType=CHAR},
+      nombre = #{record.nombre,jdbcType=VARCHAR},
+      clave_presupuestal = #{record.clavePresupuestal,jdbcType=CHAR},
+      centro_trabajo = #{record.centroTrabajo,jdbcType=CHAR},
+      id_tipo_nomina = #{record.idTipoNomina,jdbcType=CHAR},
+      fecha_ini = #{record.fechaIni,jdbcType=TIMESTAMP},
+      fecha_fin = #{record.fechaFin,jdbcType=TIMESTAMP},
+      fecha_pago = #{record.fechaPago,jdbcType=TIMESTAMP},
+      qna_proc = #{record.qnaProc,jdbcType=INTEGER},
+      cons_qna_proc = #{record.consQnaProc,jdbcType=SMALLINT},
+      tot_perc_cheque = #{record.totPercCheque,jdbcType=DECIMAL},
+      tot_ded_cheque = #{record.totDedCheque,jdbcType=DECIMAL},
+      tot_neto_cheque = #{record.totNetoCheque,jdbcType=DECIMAL},
+      num_perc = #{record.numPerc,jdbcType=SMALLINT},
+      num_desc = #{record.numDesc,jdbcType=SMALLINT},
+      clabe_inter = #{record.clabeInter,jdbcType=CHAR},
+      mensaje_impresion = #{record.mensajeImpresion,jdbcType=VARCHAR},
+      codigo_seguridad = #{record.codigoSeguridad,jdbcType=VARCHAR},
+      numero_ss = #{record.numeroSs,jdbcType=CHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="mx.sep.expedicion.modelo.Tps003Comprobante" >
+    update tps003_comprobante
+    <set >
+      <if test="numComprobante != null" >
+        num_comprobante = #{numComprobante,jdbcType=INTEGER},
+      </if>
+      <if test="rfc != null" >
+        rfc = #{rfc,jdbcType=CHAR},
+      </if>
+      <if test="cveUnica != null" >
+        cve_unica = #{cveUnica,jdbcType=CHAR},
+      </if>
+      <if test="nombre != null" >
+        nombre = #{nombre,jdbcType=VARCHAR},
+      </if>
+      <if test="clavePresupuestal != null" >
+        clave_presupuestal = #{clavePresupuestal,jdbcType=CHAR},
+      </if>
+      <if test="centroTrabajo != null" >
+        centro_trabajo = #{centroTrabajo,jdbcType=CHAR},
+      </if>
+      <if test="idTipoNomina != null" >
+        id_tipo_nomina = #{idTipoNomina,jdbcType=CHAR},
+      </if>
+      <if test="fechaIni != null" >
+        fecha_ini = #{fechaIni,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fechaFin != null" >
+        fecha_fin = #{fechaFin,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fechaPago != null" >
+        fecha_pago = #{fechaPago,jdbcType=TIMESTAMP},
+      </if>
+      <if test="qnaProc != null" >
+        qna_proc = #{qnaProc,jdbcType=INTEGER},
+      </if>
+      <if test="consQnaProc != null" >
+        cons_qna_proc = #{consQnaProc,jdbcType=SMALLINT},
+      </if>
+      <if test="totPercCheque != null" >
+        tot_perc_cheque = #{totPercCheque,jdbcType=DECIMAL},
+      </if>
+      <if test="totDedCheque != null" >
+        tot_ded_cheque = #{totDedCheque,jdbcType=DECIMAL},
+      </if>
+      <if test="totNetoCheque != null" >
+        tot_neto_cheque = #{totNetoCheque,jdbcType=DECIMAL},
+      </if>
+      <if test="numPerc != null" >
+        num_perc = #{numPerc,jdbcType=SMALLINT},
+      </if>
+      <if test="numDesc != null" >
+        num_desc = #{numDesc,jdbcType=SMALLINT},
+      </if>
+      <if test="clabeInter != null" >
+        clabe_inter = #{clabeInter,jdbcType=CHAR},
+      </if>
+      <if test="mensajeImpresion != null" >
+        mensaje_impresion = #{mensajeImpresion,jdbcType=VARCHAR},
+      </if>
+      <if test="codigoSeguridad != null" >
+        codigo_seguridad = #{codigoSeguridad,jdbcType=VARCHAR},
+      </if>
+      <if test="numeroSs != null" >
+        numero_ss = #{numeroSs,jdbcType=CHAR},
+      </if>
+    </set>
+    where id_comprobante = #{idComprobante,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="mx.sep.expedicion.modelo.Tps003Comprobante" >
+    update tps003_comprobante
+    set num_comprobante = #{numComprobante,jdbcType=INTEGER},
+      rfc = #{rfc,jdbcType=CHAR},
+      cve_unica = #{cveUnica,jdbcType=CHAR},
+      nombre = #{nombre,jdbcType=VARCHAR},
+      clave_presupuestal = #{clavePresupuestal,jdbcType=CHAR},
+      centro_trabajo = #{centroTrabajo,jdbcType=CHAR},
+      id_tipo_nomina = #{idTipoNomina,jdbcType=CHAR},
+      fecha_ini = #{fechaIni,jdbcType=TIMESTAMP},
+      fecha_fin = #{fechaFin,jdbcType=TIMESTAMP},
+      fecha_pago = #{fechaPago,jdbcType=TIMESTAMP},
+      qna_proc = #{qnaProc,jdbcType=INTEGER},
+      cons_qna_proc = #{consQnaProc,jdbcType=SMALLINT},
+      tot_perc_cheque = #{totPercCheque,jdbcType=DECIMAL},
+      tot_ded_cheque = #{totDedCheque,jdbcType=DECIMAL},
+      tot_neto_cheque = #{totNetoCheque,jdbcType=DECIMAL},
+      num_perc = #{numPerc,jdbcType=SMALLINT},
+      num_desc = #{numDesc,jdbcType=SMALLINT},
+      clabe_inter = #{clabeInter,jdbcType=CHAR},
+      mensaje_impresion = #{mensajeImpresion,jdbcType=VARCHAR},
+      codigo_seguridad = #{codigoSeguridad,jdbcType=VARCHAR},
+      numero_ss = #{numeroSs,jdbcType=CHAR}
+    where id_comprobante = #{idComprobante,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="mx.sep.expedicion.dao.Tps001TipoNominaMapper" >
+  <resultMap id="BaseResultMap" type="mx.sep.expedicion.modelo.Tps001TipoNomina" >
+    <id column="id_tipo_nomina" property="idTipoNomina" jdbcType="CHAR" />
+    <result column="descripcion" property="descripcion" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id_tipo_nomina, descripcion
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="mx.sep.expedicion.modelo.Tps001TipoNominaExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tps001_tipo_nomina
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from tps001_tipo_nomina
+    where id_tipo_nomina = #{idTipoNomina,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from tps001_tipo_nomina
+    where id_tipo_nomina = #{idTipoNomina,jdbcType=CHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="mx.sep.expedicion.modelo.Tps001TipoNominaExample" >
+    delete from tps001_tipo_nomina
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="mx.sep.expedicion.modelo.Tps001TipoNomina" >
+    insert into tps001_tipo_nomina (id_tipo_nomina, descripcion)
+    values (#{idTipoNomina,jdbcType=CHAR}, #{descripcion,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="mx.sep.expedicion.modelo.Tps001TipoNomina" >
+    insert into tps001_tipo_nomina
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="idTipoNomina != null" >
+        id_tipo_nomina,
+      </if>
+      <if test="descripcion != null" >
+        descripcion,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="idTipoNomina != null" >
+        #{idTipoNomina,jdbcType=CHAR},
+      </if>
+      <if test="descripcion != null" >
+        #{descripcion,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="mx.sep.expedicion.modelo.Tps001TipoNominaExample" resultType="java.lang.Integer" >
+    select count(*) from tps001_tipo_nomina
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update tps001_tipo_nomina
+    <set >
+      <if test="record.idTipoNomina != null" >
+        id_tipo_nomina = #{record.idTipoNomina,jdbcType=CHAR},
+      </if>
+      <if test="record.descripcion != null" >
+        descripcion = #{record.descripcion,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update tps001_tipo_nomina
+    set id_tipo_nomina = #{record.idTipoNomina,jdbcType=CHAR},
+      descripcion = #{record.descripcion,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="mx.sep.expedicion.modelo.Tps001TipoNomina" >
+    update tps001_tipo_nomina
+    <set >
+      <if test="descripcion != null" >
+        descripcion = #{descripcion,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id_tipo_nomina = #{idTipoNomina,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="mx.sep.expedicion.modelo.Tps001TipoNomina" >
+    update tps001_tipo_nomina
+    set descripcion = #{descripcion,jdbcType=VARCHAR}
+    where id_tipo_nomina = #{idTipoNomina,jdbcType=CHAR}
+  </update>
+</mapper>

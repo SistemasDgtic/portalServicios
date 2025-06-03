@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="mx.sep.expedicion.dao.Tps022CarreraMapper" >
+  <resultMap id="BaseResultMap" type="mx.sep.expedicion.modelo.Tps022Carrera" >
+    <id column="id_carrera" property="idCarrera" jdbcType="INTEGER" />
+    <result column="descripcion" property="descripcion" jdbcType="VARCHAR" />
+    <result column="act_inact" property="actInact" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id_carrera, descripcion, act_inact
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="mx.sep.expedicion.modelo.Tps022CarreraExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tps022_carrera
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tps022_carrera
+    where id_carrera = #{idCarrera,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tps022_carrera
+    where id_carrera = #{idCarrera,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="mx.sep.expedicion.modelo.Tps022CarreraExample" >
+    delete from tps022_carrera
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="mx.sep.expedicion.modelo.Tps022Carrera" >
+    insert into tps022_carrera (id_carrera, descripcion, act_inact
+      )
+    values (#{idCarrera,jdbcType=INTEGER}, #{descripcion,jdbcType=VARCHAR}, #{actInact,jdbcType=CHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="mx.sep.expedicion.modelo.Tps022Carrera" >
+    insert into tps022_carrera
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="idCarrera != null" >
+        id_carrera,
+      </if>
+      <if test="descripcion != null" >
+        descripcion,
+      </if>
+      <if test="actInact != null" >
+        act_inact,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="idCarrera != null" >
+        #{idCarrera,jdbcType=INTEGER},
+      </if>
+      <if test="descripcion != null" >
+        #{descripcion,jdbcType=VARCHAR},
+      </if>
+      <if test="actInact != null" >
+        #{actInact,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="mx.sep.expedicion.modelo.Tps022CarreraExample" resultType="java.lang.Integer" >
+    select count(*) from tps022_carrera
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update tps022_carrera
+    <set >
+      <if test="record.idCarrera != null" >
+        id_carrera = #{record.idCarrera,jdbcType=INTEGER},
+      </if>
+      <if test="record.descripcion != null" >
+        descripcion = #{record.descripcion,jdbcType=VARCHAR},
+      </if>
+      <if test="record.actInact != null" >
+        act_inact = #{record.actInact,jdbcType=CHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update tps022_carrera
+    set id_carrera = #{record.idCarrera,jdbcType=INTEGER},
+      descripcion = #{record.descripcion,jdbcType=VARCHAR},
+      act_inact = #{record.actInact,jdbcType=CHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="mx.sep.expedicion.modelo.Tps022Carrera" >
+    update tps022_carrera
+    <set >
+      <if test="descripcion != null" >
+        descripcion = #{descripcion,jdbcType=VARCHAR},
+      </if>
+      <if test="actInact != null" >
+        act_inact = #{actInact,jdbcType=CHAR},
+      </if>
+    </set>
+    where id_carrera = #{idCarrera,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="mx.sep.expedicion.modelo.Tps022Carrera" >
+    update tps022_carrera
+    set descripcion = #{descripcion,jdbcType=VARCHAR},
+      act_inact = #{actInact,jdbcType=CHAR}
+    where id_carrera = #{idCarrera,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mx.sep.seguridad.dao.SeguridadDao">
+
+	<resultMap type="UsuarioSeguridad" id="resultUsuario">
+		<id property="id" column="id_usuario"/>
+		<result property="username" column="username"/>
+		<result property="password" column="password"/>
+		<result property="nombre" column="nombre_usuario"/>
+		<result property="activo" column="usuario_activo"/>
+                <result property="habilitado" column="usuario_habilitado"/>
+	</resultMap>
+	
+	<resultMap type="UsuarioSeguridad" id="resultUsuarioConRoles">
+		<id property="id" column="id_usuario"/>
+		<result property="username" column="username"/>
+		<result property="password" column="password"/>
+		<result property="nombre" column="nombre_usuario"/>
+		<result property="activo" column="usuario_activo"/>
+                <result property="habilitado" column="usuario_habilitado"/>
+		<collection property="roles" column="id_usuario" ofType="RolSeguridad"
+			resultMap="resultRol"/>		
+	</resultMap>
+
+	<resultMap type="RolSeguridad" id="resultRol">
+		<id property="id" column="id_rol"/>
+		<result property="rol" column="rol"/>
+		<result property="activo" column="activo"/>
+	</resultMap>
+	
+	<select id="consultarUsarios" resultMap="resultUsuario">
+		select * from tps005_usuarios;
+	</select>
+
+	<select id="consultarRoles" resultMap="resultRol">
+		select * from tps006_roles;
+	</select>
+	
+	<select id="consultarUsuarioConRoles" resultMap="resultUsuarioConRoles">
+		select * from tps005_usuarios as usu
+		inner join tps008_roles_usu usu_rol on usu.id_usuario = usu_rol.id_usuario
+		inner join tps006_roles rol on rol.id_rol = usu_rol.id_rol
+		where usu.username = #{username};
+	</select>
+	
+	<delete id="deleteAllRolesUsuario" parameterType="int">
+		delete from tps008_roles_usu where id_usuario = #{idTrUsuario}
+	</delete>
+	
+	<insert id="insertRolUsuario" >
+		insert into tps008_roles_usu (id_usuario, id_rol) values ( #{idTrUsuario}, #{idTrRol})
+	</insert>
+	
+</mapper>

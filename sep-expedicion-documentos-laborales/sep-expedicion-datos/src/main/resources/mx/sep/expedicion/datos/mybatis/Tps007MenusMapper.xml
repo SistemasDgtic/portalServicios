@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="mx.sep.expedicion.dao.Tps007MenusMapper" >
+  <resultMap id="BaseResultMap" type="mx.sep.expedicion.modelo.Tps007Menus" >
+    <id column="id_opcion" property="idOpcion" jdbcType="INTEGER" />
+    <result column="descripcion" property="descripcion" jdbcType="VARCHAR" />
+    <result column="opcion" property="opcion" jdbcType="VARCHAR" />
+    <result column="url" property="url" jdbcType="VARCHAR" />
+    <result column="id_opcion_padre" property="idOpcionPadre" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id_opcion, descripcion, opcion, url, id_opcion_padre
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="mx.sep.expedicion.modelo.Tps007MenusExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tps007_menus
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tps007_menus
+    where id_opcion = #{idOpcion,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tps007_menus
+    where id_opcion = #{idOpcion,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="mx.sep.expedicion.modelo.Tps007MenusExample" >
+    delete from tps007_menus
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="mx.sep.expedicion.modelo.Tps007Menus" >
+    insert into tps007_menus (id_opcion, descripcion, opcion, 
+      url, id_opcion_padre)
+    values (#{idOpcion,jdbcType=INTEGER}, #{descripcion,jdbcType=VARCHAR}, #{opcion,jdbcType=VARCHAR}, 
+      #{url,jdbcType=VARCHAR}, #{idOpcionPadre,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="mx.sep.expedicion.modelo.Tps007Menus" >
+    insert into tps007_menus
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="idOpcion != null" >
+        id_opcion,
+      </if>
+      <if test="descripcion != null" >
+        descripcion,
+      </if>
+      <if test="opcion != null" >
+        opcion,
+      </if>
+      <if test="url != null" >
+        url,
+      </if>
+      <if test="idOpcionPadre != null" >
+        id_opcion_padre,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="idOpcion != null" >
+        #{idOpcion,jdbcType=INTEGER},
+      </if>
+      <if test="descripcion != null" >
+        #{descripcion,jdbcType=VARCHAR},
+      </if>
+      <if test="opcion != null" >
+        #{opcion,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null" >
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="idOpcionPadre != null" >
+        #{idOpcionPadre,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="mx.sep.expedicion.modelo.Tps007MenusExample" resultType="java.lang.Integer" >
+    select count(*) from tps007_menus
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update tps007_menus
+    <set >
+      <if test="record.idOpcion != null" >
+        id_opcion = #{record.idOpcion,jdbcType=INTEGER},
+      </if>
+      <if test="record.descripcion != null" >
+        descripcion = #{record.descripcion,jdbcType=VARCHAR},
+      </if>
+      <if test="record.opcion != null" >
+        opcion = #{record.opcion,jdbcType=VARCHAR},
+      </if>
+      <if test="record.url != null" >
+        url = #{record.url,jdbcType=VARCHAR},
+      </if>
+      <if test="record.idOpcionPadre != null" >
+        id_opcion_padre = #{record.idOpcionPadre,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update tps007_menus
+    set id_opcion = #{record.idOpcion,jdbcType=INTEGER},
+      descripcion = #{record.descripcion,jdbcType=VARCHAR},
+      opcion = #{record.opcion,jdbcType=VARCHAR},
+      url = #{record.url,jdbcType=VARCHAR},
+      id_opcion_padre = #{record.idOpcionPadre,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="mx.sep.expedicion.modelo.Tps007Menus" >
+    update tps007_menus
+    <set >
+      <if test="descripcion != null" >
+        descripcion = #{descripcion,jdbcType=VARCHAR},
+      </if>
+      <if test="opcion != null" >
+        opcion = #{opcion,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null" >
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="idOpcionPadre != null" >
+        id_opcion_padre = #{idOpcionPadre,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id_opcion = #{idOpcion,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="mx.sep.expedicion.modelo.Tps007Menus" >
+    update tps007_menus
+    set descripcion = #{descripcion,jdbcType=VARCHAR},
+      opcion = #{opcion,jdbcType=VARCHAR},
+      url = #{url,jdbcType=VARCHAR},
+      id_opcion_padre = #{idOpcionPadre,jdbcType=INTEGER}
+    where id_opcion = #{idOpcion,jdbcType=INTEGER}
+  </update>
+</mapper>

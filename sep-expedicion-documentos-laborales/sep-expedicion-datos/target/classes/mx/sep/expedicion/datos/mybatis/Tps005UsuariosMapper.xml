@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="mx.sep.expedicion.dao.Tps005UsuariosMapper" >
+  <resultMap id="BaseResultMap" type="mx.sep.expedicion.modelo.Tps005Usuarios" >
+    <id column="id_usuario" property="idUsuario" jdbcType="INTEGER" />
+    <result column="id_pregunta" property="idPregunta" jdbcType="INTEGER" />
+    <result column="username" property="username" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="nombre_usuario" property="nombreUsuario" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="respuesta" property="respuesta" jdbcType="VARCHAR" />
+    <result column="usuario_activo" property="usuarioActivo" jdbcType="BOOLEAN" />
+    <result column="usuario_habilitado" property="usuarioHabilitado" jdbcType="BOOLEAN" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id_usuario, id_pregunta, username, password, nombre_usuario, email, respuesta, usuario_activo, 
+    usuario_habilitado
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="mx.sep.expedicion.modelo.Tps005UsuariosExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tps005_usuarios
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tps005_usuarios
+    where id_usuario = #{idUsuario,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tps005_usuarios
+    where id_usuario = #{idUsuario,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="mx.sep.expedicion.modelo.Tps005UsuariosExample" >
+    delete from tps005_usuarios
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="mx.sep.expedicion.modelo.Tps005Usuarios" >
+    insert into tps005_usuarios (id_usuario, id_pregunta, username, 
+      password, nombre_usuario, email, 
+      respuesta, usuario_activo, usuario_habilitado
+      )
+    values (#{idUsuario,jdbcType=INTEGER}, #{idPregunta,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, 
+      #{password,jdbcType=VARCHAR}, #{nombreUsuario,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
+      #{respuesta,jdbcType=VARCHAR}, #{usuarioActivo,jdbcType=BOOLEAN}, #{usuarioHabilitado,jdbcType=BOOLEAN}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="mx.sep.expedicion.modelo.Tps005Usuarios" >
+    insert into tps005_usuarios
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="idUsuario != null" >
+        id_usuario,
+      </if>
+      <if test="idPregunta != null" >
+        id_pregunta,
+      </if>
+      <if test="username != null" >
+        username,
+      </if>
+      <if test="password != null" >
+        password,
+      </if>
+      <if test="nombreUsuario != null" >
+        nombre_usuario,
+      </if>
+      <if test="email != null" >
+        email,
+      </if>
+      <if test="respuesta != null" >
+        respuesta,
+      </if>
+      <if test="usuarioActivo != null" >
+        usuario_activo,
+      </if>
+      <if test="usuarioHabilitado != null" >
+        usuario_habilitado,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="idUsuario != null" >
+        #{idUsuario,jdbcType=INTEGER},
+      </if>
+      <if test="idPregunta != null" >
+        #{idPregunta,jdbcType=INTEGER},
+      </if>
+      <if test="username != null" >
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="nombreUsuario != null" >
+        #{nombreUsuario,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="respuesta != null" >
+        #{respuesta,jdbcType=VARCHAR},
+      </if>
+      <if test="usuarioActivo != null" >
+        #{usuarioActivo,jdbcType=BOOLEAN},
+      </if>
+      <if test="usuarioHabilitado != null" >
+        #{usuarioHabilitado,jdbcType=BOOLEAN},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="mx.sep.expedicion.modelo.Tps005UsuariosExample" resultType="java.lang.Integer" >
+    select count(*) from tps005_usuarios
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update tps005_usuarios
+    <set >
+      <if test="record.idUsuario != null" >
+        id_usuario = #{record.idUsuario,jdbcType=INTEGER},
+      </if>
+      <if test="record.idPregunta != null" >
+        id_pregunta = #{record.idPregunta,jdbcType=INTEGER},
+      </if>
+      <if test="record.username != null" >
+        username = #{record.username,jdbcType=VARCHAR},
+      </if>
+      <if test="record.password != null" >
+        password = #{record.password,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nombreUsuario != null" >
+        nombre_usuario = #{record.nombreUsuario,jdbcType=VARCHAR},
+      </if>
+      <if test="record.email != null" >
+        email = #{record.email,jdbcType=VARCHAR},
+      </if>
+      <if test="record.respuesta != null" >
+        respuesta = #{record.respuesta,jdbcType=VARCHAR},
+      </if>
+      <if test="record.usuarioActivo != null" >
+        usuario_activo = #{record.usuarioActivo,jdbcType=BOOLEAN},
+      </if>
+      <if test="record.usuarioHabilitado != null" >
+        usuario_habilitado = #{record.usuarioHabilitado,jdbcType=BOOLEAN},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update tps005_usuarios
+    set id_usuario = #{record.idUsuario,jdbcType=INTEGER},
+      id_pregunta = #{record.idPregunta,jdbcType=INTEGER},
+      username = #{record.username,jdbcType=VARCHAR},
+      password = #{record.password,jdbcType=VARCHAR},
+      nombre_usuario = #{record.nombreUsuario,jdbcType=VARCHAR},
+      email = #{record.email,jdbcType=VARCHAR},
+      respuesta = #{record.respuesta,jdbcType=VARCHAR},
+      usuario_activo = #{record.usuarioActivo,jdbcType=BOOLEAN},
+      usuario_habilitado = #{record.usuarioHabilitado,jdbcType=BOOLEAN}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="mx.sep.expedicion.modelo.Tps005Usuarios" >
+    update tps005_usuarios
+    <set >
+      <if test="idPregunta != null" >
+        id_pregunta = #{idPregunta,jdbcType=INTEGER},
+      </if>
+      <if test="username != null" >
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="nombreUsuario != null" >
+        nombre_usuario = #{nombreUsuario,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="respuesta != null" >
+        respuesta = #{respuesta,jdbcType=VARCHAR},
+      </if>
+      <if test="usuarioActivo != null" >
+        usuario_activo = #{usuarioActivo,jdbcType=BOOLEAN},
+      </if>
+      <if test="usuarioHabilitado != null" >
+        usuario_habilitado = #{usuarioHabilitado,jdbcType=BOOLEAN},
+      </if>
+    </set>
+    where id_usuario = #{idUsuario,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="mx.sep.expedicion.modelo.Tps005Usuarios" >
+    update tps005_usuarios
+    set id_pregunta = #{idPregunta,jdbcType=INTEGER},
+      username = #{username,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      nombre_usuario = #{nombreUsuario,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      respuesta = #{respuesta,jdbcType=VARCHAR},
+      usuario_activo = #{usuarioActivo,jdbcType=BOOLEAN},
+      usuario_habilitado = #{usuarioHabilitado,jdbcType=BOOLEAN}
+    where id_usuario = #{idUsuario,jdbcType=INTEGER}
+  </update>
+</mapper>

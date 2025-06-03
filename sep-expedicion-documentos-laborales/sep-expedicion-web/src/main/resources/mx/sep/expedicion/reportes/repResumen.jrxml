@@ -1,0 +1,366 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="repResumen" pageWidth="792" pageHeight="612" orientation="Landscape" columnWidth="752" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="0c8d7da1-dab8-40af-8055-3758edeea865">
+	<property name="ireport.zoom" value="2.0"/>
+	<property name="ireport.x" value="762"/>
+	<property name="ireport.y" value="381"/>
+	<parameter name="pRfc" class="java.lang.String"/>
+	<parameter name="pAnio" class="java.lang.Integer"/>
+	<parameter name="PATH_WEB" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT
+    rfc,
+    nombre,
+    curp,
+    ing_anual_sueldo,
+    ing_exc_sueldo,
+    ing_acum_sueldo,
+    subsidio_sueldo,
+    imp_ret_sueldo,
+    ing_anual_honor,
+    ing_exc_honor,
+    ing_acum_honor,
+    subsidio_honor,
+    imp_ret_honor,
+    ing_anual_separa,
+    ing_exc_separa,
+    ing_acum_separa,
+    subsidio_separa,
+    imp_ret_separa
+FROM
+    tps021_reporte_isr
+WHERE
+    rfc =  $P{pRfc}
+   AND anio =  $P{pAnio}]]>
+	</queryString>
+	<field name="rfc" class="java.lang.String"/>
+	<field name="nombre" class="java.lang.String"/>
+	<field name="curp" class="java.lang.String"/>
+	<field name="ing_anual_sueldo" class="java.math.BigDecimal"/>
+	<field name="ing_exc_sueldo" class="java.math.BigDecimal"/>
+	<field name="ing_acum_sueldo" class="java.math.BigDecimal"/>
+	<field name="subsidio_sueldo" class="java.math.BigDecimal"/>
+	<field name="imp_ret_sueldo" class="java.math.BigDecimal"/>
+	<field name="ing_anual_honor" class="java.math.BigDecimal"/>
+	<field name="ing_exc_honor" class="java.math.BigDecimal"/>
+	<field name="ing_acum_honor" class="java.math.BigDecimal"/>
+	<field name="subsidio_honor" class="java.math.BigDecimal"/>
+	<field name="imp_ret_honor" class="java.math.BigDecimal"/>
+	<field name="ing_anual_separa" class="java.math.BigDecimal"/>
+	<field name="ing_exc_separa" class="java.math.BigDecimal"/>
+	<field name="ing_acum_separa" class="java.math.BigDecimal"/>
+	<field name="subsidio_separa" class="java.math.BigDecimal"/>
+	<field name="imp_ret_separa" class="java.math.BigDecimal"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="92" splitType="Stretch">
+			<image scaleImage="FillFrame">
+				<reportElement uuid="6a1218a7-a189-4ba7-a588-8ef195033265" x="10" y="10" width="129" height="68" backcolor="#FFFFFF"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<imageExpression><![CDATA[$P{PATH_WEB} + "static/images/logoSep.gif"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement uuid="215d02ad-f2f6-4a47-b457-9bbedccf9d09" x="479" y="25" width="257" height="14"/>
+				<textElement textAlignment="Right">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Autoridad Educativa Federal en la Ciudad de México]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="5cc0a9a3-4bff-4016-98d8-cf2cd821e17d" x="479" y="53" width="257" height="14"/>
+				<textElement textAlignment="Right">
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[Dirección General Adjunta de Recursos Humanos]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="7835f07a-4cb9-443e-9cf7-c55fa3060705" x="479" y="67" width="257" height="14"/>
+				<textElement textAlignment="Right">
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[Dirección de Informática]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="2bbfb699-f2ee-4b3d-9dec-a451d9c6b95a" x="479" y="39" width="257" height="14"/>
+				<textElement textAlignment="Right">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Dirección General de Administración]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="307" splitType="Stretch">
+			<textField>
+				<reportElement uuid="e0cd20b9-2e91-4977-9809-f4a52104a737" x="107" y="66" width="135" height="20"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{rfc}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="b208e6bc-403c-4d39-a198-1a600bc3e46d" x="107" y="34" width="625" height="20"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="9ce24866-5b49-474b-bacf-50cce3a5cd49" x="10" y="34" width="89" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[NOMBRE:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="5a804fde-59c3-45b1-82ea-e47656400645" x="10" y="66" width="89" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[RFC:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="ef97ab63-1661-4215-9d6c-bc2512cc7114" x="8" y="4" width="519" height="20"/>
+				<textElement>
+					<font isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[REPORTE DE PERCEPCIONES Y RETENCIONES DE IMPUESTO SOBRE  LA RENTA DEL EJERCICIO FISCAL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="c9d8647e-ea67-4357-9ff8-74fad3199d8a" x="31" y="138" width="108" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[TIPO DE INGRESO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="92cb68a3-052e-49bd-9aa8-fede01a6686a" x="10" y="189" width="193" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[SUELDOS Y SALARIOS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="fc3def5c-5e07-4173-bdbf-35d1ae2fc6b1" x="12" y="221" width="193" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[HONORARIOS ASIMILADOS A SALARIOS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="3c6f8091-eaf2-4701-8a3d-d1a3044810f7" x="12" y="250" width="193" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[PAGOS POR SEPARACIÓN]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="6097d974-4fc0-4d4c-afcd-2996aefe9859" x="219" y="138" width="90" height="39"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="8" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[INGRESO ANUAL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="6bfd64a9-8f74-4afe-9c1e-7fae8c69782e" x="320" y="138" width="90" height="39"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="8" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[INGRESOS EXENTOS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="b3c985a5-a3e6-4271-91b3-3f64496ff876" x="427" y="138" width="90" height="39"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="8" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[INGRESOS ACUMULABLES]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="c3aab819-7ab2-445d-a25c-ef051b1b785e" x="539" y="138" width="89" height="39"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="8" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[SUBSIDIO PARA EL EMPLEO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="34cf69c4-4aee-44d6-a1c7-7afaf6e25a7d" x="652" y="138" width="90" height="39"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="8" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[IMPUESTO RETENIDO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="8f4b111d-f2a9-490c-ad3e-481df250f860" x="12" y="280" width="193" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TOTAL]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" pattern="$ #,##0.00">
+				<reportElement uuid="4d67f713-94f2-49b2-ab85-1c6d37532d15" x="219" y="189" width="90" height="20"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ing_anual_sueldo}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="$ #,##0.00">
+				<reportElement uuid="c241ce71-aef7-4eb4-8f1a-ffd6cf2f80ca" x="320" y="188" width="90" height="20"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ing_exc_sueldo}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="$ #,##0.00">
+				<reportElement uuid="94dc023c-491f-427f-ba52-82445fcd85b5" x="427" y="188" width="90" height="20"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ing_acum_sueldo}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="$ #,##0.00" isBlankWhenNull="true">
+				<reportElement uuid="8eeabf36-6141-4667-96a6-50f806083763" x="538" y="189" width="90" height="20"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{subsidio_sueldo}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="$ #,##0.00">
+				<reportElement uuid="0cd73ff0-0c4b-44af-904b-9dbb99b9bc47" x="652" y="189" width="90" height="20"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{imp_ret_sueldo}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="$ #,##0.00">
+				<reportElement uuid="1ce7b944-eeef-4dcb-a7a6-1db68cca1c08" x="219" y="221" width="90" height="20"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ing_anual_honor}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="$ #,##0.00">
+				<reportElement uuid="be1bf781-fbd6-43e2-8abe-b65400c3a909" x="320" y="221" width="90" height="20"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ing_exc_honor}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="$ #,##0.00" isBlankWhenNull="true">
+				<reportElement uuid="a005ba2d-ec03-41a6-a7f2-4788782a728c" x="427" y="221" width="90" height="20"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ing_acum_honor}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="$ #,##0.00">
+				<reportElement uuid="010915d6-368a-4738-9cec-b3c948fb3171" x="538" y="221" width="90" height="20"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{subsidio_honor}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="$ #,##0.00">
+				<reportElement uuid="908200db-04c1-462d-851b-925bc4a47e36" x="652" y="221" width="90" height="20"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{imp_ret_honor}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="$ #,##0.00">
+				<reportElement uuid="acd7d598-c5d4-46dc-a18f-41d34dbdd0ea" x="219" y="250" width="90" height="20"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ing_anual_separa}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="$ #,##0.00">
+				<reportElement uuid="08d1d426-9fec-4aec-bec3-9b7374c68cc3" x="427" y="250" width="90" height="20"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ing_acum_separa}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="$ #,##0.00">
+				<reportElement uuid="a56579c8-a4e6-4323-b582-1de432cceb05" x="320" y="250" width="90" height="20"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ing_exc_separa}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="$ #,##0.00" isBlankWhenNull="true">
+				<reportElement uuid="001813bb-c46f-4c64-ab82-1ca85e091391" x="538" y="250" width="90" height="20"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{subsidio_separa}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="$ #,##0.00">
+				<reportElement uuid="f091fe55-ee5c-49db-9a35-951ba4bdfe76" x="652" y="250" width="90" height="20"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{imp_ret_separa}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="$ #,##0.00">
+				<reportElement uuid="7d8a434f-456b-40a6-a752-9cc50224bd96" x="219" y="280" width="90" height="20"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ing_anual_sueldo}.add($F{ing_anual_honor}.add($F{ing_anual_separa}) )]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="$ #,##0.00">
+				<reportElement uuid="2eb6d70e-f262-4bf1-a2e5-21e0f4f4f25b" x="320" y="280" width="90" height="20"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ing_exc_sueldo}.add( $F{ing_exc_honor}.add( $F{ing_exc_separa} ) )]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="$ #,##0.00">
+				<reportElement uuid="208f51c2-7e78-4e31-b774-4fb7fd5d9eb8" x="427" y="280" width="90" height="20"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ing_acum_sueldo}.add( $F{ing_acum_honor}.add( $F{ing_acum_separa} ) )]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="$ #,##0.00">
+				<reportElement uuid="744536ac-a339-49c3-be4e-d24e86bb67cb" x="539" y="280" width="90" height="20"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{subsidio_sueldo}.add( $F{subsidio_honor}.add( $F{subsidio_separa} ) )]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="$ #,##0.00">
+				<reportElement uuid="d95152d4-7d05-46bd-a509-3b8801e279e3" x="652" y="280" width="90" height="20"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{imp_ret_sueldo}.add( $F{imp_ret_honor}.add( $F{imp_ret_separa} ) )]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="ee76a070-ea2b-4fd1-90a8-638913586ae4" x="527" y="4" width="100" height="20"/>
+				<textElement>
+					<font isBold="true" isUnderline="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{pAnio}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>
