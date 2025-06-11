@@ -18,13 +18,14 @@
         <property name="username" value="portal.servicios@nube.sep.gob.mx"/>
         <property name="password" value="Fay99117"/>
         <property name="javaMailProperties">
-            <props>	            
-                <prop key="mail.transport.protocol">smtp</prop>
+            <props>              
                 <prop key="mail.smtp.auth">true</prop>
-                <prop key="mail.smtp.starttls.enable">true</prop>
-                <prop key="mail.smtp.quitwait">false</prop>
+                <prop key="mail.smtp.ehlo">true</prop>
                 <prop key="mail.smtp.ssl.trust">*</prop>
-            </props>
+                <prop key="mail.smtp.starttls.enable">true</prop>
+                <prop key="mail.smtp.ssl.protocols">TLSv1.2</prop>
+            </props>     
+
         </property>
     </bean>
 </beans>
