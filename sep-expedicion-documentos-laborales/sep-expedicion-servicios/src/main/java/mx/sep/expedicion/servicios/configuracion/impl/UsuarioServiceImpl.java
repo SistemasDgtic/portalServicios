@@ -146,8 +146,8 @@ public class UsuarioServiceImpl implements UsuarioService {
         return tps005UsuariosMapper.selectByExample(tps005UsuariosExample);
     }
     
-    @Override
-    public void enviaMail(Tps005Usuarios tps005Usuarios) throws Exception {
+     @Override
+    public String modificar(Tps005Usuarios tps005Usuarios) throws Exception {
         Tps005UsuariosExample tps005UsuariosExample = new Tps005UsuariosExample();
         Tps005UsuariosExample.Criteria criteria = tps005UsuariosExample.createCriteria();        
         criteria.andIdUsuarioEqualTo(tps005Usuarios.getIdUsuario());        
@@ -155,7 +155,12 @@ public class UsuarioServiceImpl implements UsuarioService {
         String password = String.valueOf(valorGenerado);
         String encodedPassword = passwordEncoder.encodePassword(password, null);
         tps005Usuarios.setPassword(encodedPassword);        
-        tps005UsuariosMapper.updateByPrimaryKeySelective(tps005Usuarios);        
+        tps005UsuariosMapper.updateByPrimaryKeySelective(tps005Usuarios);  
+        return password;
+    }
+    
+    @Override
+    public void enviaMail(Tps005Usuarios tps005Usuarios, String password) throws Exception {
         String text = "Su nueva contraseña es:  " + password + "\n\n\n**** Este es un correo generado automáticamente, favor de no responderlo ****";        
         mailService.send(tps005Usuarios.getEmail(), "Recuperación de contraseña para el acceso al Portal de Autoservicios", text);        
     }

@@ -34,7 +34,9 @@ public interface UsuarioService {
     
     List<Tps005Usuarios> consultaPorRespuestayRfc(Tps005Usuarios tps005Usuarios) throws Exception;
     
-    void enviaMail(Tps005Usuarios tps005Usuarios) throws Exception;    
+    String modificar(Tps005Usuarios tps005Usuarios) throws Exception;  
+    
+    void enviaMail(Tps005Usuarios tps005Usuarios, String password) throws Exception;    
     
     int consultaBienvenidaEsp(Tps005Usuarios tps005Usuarios) throws Exception;
 }

@@ -107,7 +107,8 @@ public class UsuarioController extends ControllerBase {
     @RequestMapping(value = "/enviaPassword/enviaMail", method = RequestMethod.POST)
     @ResponseBody
     public void enviaMail(@RequestBody Tps005Usuarios tps005Usuarios) throws Exception {
-        usuarioService.enviaMail(tps005Usuarios);
+        String password = usuarioService.modificar(tps005Usuarios);
+        usuarioService.enviaMail(tps005Usuarios, password);
     }
 
     @RequestMapping(value = "/obtieneRol/{aleatorio}", method = RequestMethod.GET)
