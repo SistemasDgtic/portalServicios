@@ -1,6 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!--v 1.2.2 -->
+<!--v 1.2.6 -->
 <!DOCTYPE html>
 <html>
     <head>

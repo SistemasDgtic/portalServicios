@@ -310,3 +310,4 @@ define(["dojo/_base/xhr",
                 init: init
             };
         });
+        

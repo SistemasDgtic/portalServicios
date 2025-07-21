@@ -251,3 +251,4 @@ define(["dijit/form/Form",
                 init: init
             };
         });
+        
