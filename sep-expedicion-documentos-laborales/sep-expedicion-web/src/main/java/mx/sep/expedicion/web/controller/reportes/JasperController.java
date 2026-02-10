@@ -19,6 +19,9 @@ import mx.sep.expedicion.servicios.comprobantes.ComprobantePagoService;
 import mx.sep.expedicion.servicios.comprobantes.TimbradoSatService;
 import mx.sep.expedicion.servicios.comprobantes.Tps021QnasAguinaldoService;
 import mx.sep.expedicion.servicios.constancias.RetenedorService;
+import mx.sep.seguridad.modelo.UsuarioSeguridad;
+import mx.sep.seguridad.util.SeguridadUtil;
+import mx.sep.util.servicios.LoggerUtil;
 import mx.sep.util.web.QRGenerator;
 import net.sf.jasperreports.engine.JRParameter;
 import net.sf.jasperreports.engine.fill.JRFileVirtualizer;
@@ -61,10 +64,6 @@ public class JasperController {
                 .getRealPath("/");
         Tps013TimbraSat tps013TimbraSat = new Tps013TimbraSat();
         QRGenerator qr = new QRGenerator();
-        //try {
-        //	dataSource.getConnection().setTransactionIsolation(Connection.TRANSACTION_READ_UNCOMMITTED);
-        //} catch (SQLException e) {
-        //}
         Integer compTimExist = timbradoSatService.comprobanteTimbradoExist(nuComprobante);
         if (compTimExist != 0) {
             tps013TimbraSat = timbradoSatService.consultaPorComprobante(nuComprobante);
@@ -78,6 +77,15 @@ public class JasperController {
             String data = "?re=" + rfcEmisor + "&rr=" + tps003Comprobante.getRfc() + "&tt=" + totalCompFormat + "&id=" + tps013TimbraSat.getUuid();
             //Generación del código QR            
             qr.QRGeneratorData(data, rutaSer, nuComprobante);
+        }
+        UsuarioSeguridad us = SeguridadUtil.getUsuarioActual();
+        LoggerUtil.debug(this, "Usuario ------------>>>>: " + us.getUsername());
+        String nombreRol = SeguridadUtil.getUnicoRol();
+        LoggerUtil.debug(this, "Rol ------------>>>>: " + nombreRol);
+        if (!(nombreRol.equals("ROLE_ADMINISTRADOR") || nombreRol.equals("ROLE_APOYO"))) {
+           modelMap.put("pRfc", "AND comp.rfc = '"+us.getUsername()+"'");
+        }else{
+           modelMap.put("pRfc"," ");
         }
         //Parámetros para generación del reporte        
         modelMap.put("dataSourceKey", dataSource);
