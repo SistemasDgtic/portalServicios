@@ -14,6 +14,7 @@
 		<defaultValueExpression><![CDATA["C:/Proyectos SEP/sep-expedicion-documentos-laborales/sep-expedicion-web/src/main/resources/"]]></defaultValueExpression>
 	</parameter>
 	<parameter name="pCompTimExist" class="java.lang.Integer"/>
+	<parameter name="pRfc" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[SELECT
     comp.id_comprobante,
@@ -46,7 +47,8 @@ WHERE
         comp.id_tipo_nomina = tps001_tipo_nomina.id_tipo_nomina
         and comp.id_comprobante = tsat.id_comprobante
     )
-AND comp.id_comprobante = $P{pIdComprobante}]]>
+AND comp.id_comprobante = $P{pIdComprobante}
+$P!{pRfc}]]>
 	</queryString>
 	<field name="id_comprobante" class="java.lang.Integer"/>
 	<field name="nombre" class="java.lang.String"/>

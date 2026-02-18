@@ -42,11 +42,11 @@
                 <nombre.profile>testing</nombre.profile>
                 <modo.log>error</modo.log>
                 <modo.log.libs>error</modo.log.libs>
-                <dir.log>D:\apps\portalservicios</dir.log>
+                <dir.log>C:\apps\portalservicios</dir.log>
                 <up.log>TESTING</up.log>
                 <upcve.log>38</upcve.log>
-                <up.comprobante>repComprobantePagoTNM</up.comprobante>
-                <up.comprobante24>repComprobantePagoCpto24TNM</up.comprobante24>
+                <up.comprobante>repComprobantePago</up.comprobante>
+                <up.comprobante24>repComprobantePagoCpto24</up.comprobante24>
                 <id.analytics>UA-47535067-1</id.analytics>
                 <login.background>portadav1.jpg</login.background>
                 <baner.background>baner_titulo.jpg</baner.background>

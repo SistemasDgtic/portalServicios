@@ -136,11 +136,38 @@
         </bean>
     </beans>
     
-    <!--Produccion
-    <beans profile="desarrollo">
+    
+    <!--Produccion Sector Central-->
+    <!--<beans profile="desarrollo">
         <bean id="dataSourceSeguridad" class="org.apache.commons.dbcp.BasicDataSource">
             <property name="driverClassName" value="com.informix.jdbc.IfxDriver" />
             <property name="url" value="jdbc:informix-sqli://168.255.101.7:1540/portal_sector:informixserver=srvpsofm_tcp" />
+            <property name="username" value="a713ap00" />
+            <property name="password" value="aal7704" />
+            <property name="initialSize" value="2" />
+            <property name="maxActive" value="5" />
+        </bean>
+    </beans>
+    -->
+  
+   <!--Produccion AEFCM-->
+   <!-- <beans profile="desarrollo">
+        <bean id="dataSourceSeguridad" class="org.apache.commons.dbcp.BasicDataSource">
+            <property name="driverClassName" value="com.informix.jdbc.IfxDriver" />
+            <property name="url" value="jdbc:informix-sqli://168.255.201.77:1528/portal_df:informixserver=srvpsdf_tcp" />
+            <property name="username" value="a713ap00" />
+            <property name="password" value="aalsiad1" />
+            <property name="initialSize" value="2" />
+            <property name="maxActive" value="5" />
+        </bean>
+    </beans>
+    -->
+    
+    <!--Produccion SEMS-->
+    <!--<beans profile="desarrollo">
+        <bean id="dataSourceSeguridad" class="org.apache.commons.dbcp.BasicDataSource">
+            <property name="driverClassName" value="com.informix.jdbc.IfxDriver" />
+            <property name="url" value="jdbc:informix-sqli://168.255.101.7:1550/portal_sems:informixserver=srvpssems_tcp" />
             <property name="username" value="a713ap00" />
             <property name="password" value="aal7704" />
             <property name="initialSize" value="2" />

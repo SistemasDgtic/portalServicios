@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="repComprobantePago" printOrder="Horizontal" pageWidth="612" pageHeight="792" columnWidth="572" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isFloatColumnFooter="true" uuid="747ba9ad-7255-4ab2-b810-f793917c7a60">
 	<property name="ireport.zoom" value="1.6105100000000128"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="1008"/>
+	<property name="ireport.y" value="432"/>
 	<subDataset name="dataset1" uuid="6ba12f51-529d-495c-a343-6cc1362daea5"/>
 	<parameter name="PATH_WEB" class="java.lang.String" isForPrompting="false">
 		<defaultValueExpression><![CDATA["C:/Users/lucia martinez rosal/Documents/NetBeansProjects/sep-expedicion-documentos-laborales/sep-expedicion-web/src/main/webapp/"]]></defaultValueExpression>
@@ -14,6 +14,7 @@
 		<defaultValueExpression><![CDATA["C:/Users/lucia martinez rosal/Documents/NetBeansProjects/sep-expedicion-documentos-laborales/sep-expedicion-web/src/main/resources/"]]></defaultValueExpression>
 	</parameter>
 	<parameter name="pCompTimExist" class="java.lang.Integer"/>
+	<parameter name="pRfc" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[SELECT
     comp.id_comprobante,
@@ -46,7 +47,8 @@ WHERE
         comp.id_tipo_nomina = tps001_tipo_nomina.id_tipo_nomina
         and comp.id_comprobante = tsat.id_comprobante
     )
-AND comp.id_comprobante = $P{pIdComprobante} ;]]>
+AND comp.id_comprobante = $P{pIdComprobante}
+$P!{pRfc}]]>
 	</queryString>
 	<field name="id_comprobante" class="java.lang.Integer"/>
 	<field name="nombre" class="java.lang.String"/>
