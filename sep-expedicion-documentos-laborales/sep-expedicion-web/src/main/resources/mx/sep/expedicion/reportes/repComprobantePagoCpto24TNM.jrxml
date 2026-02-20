@@ -5,13 +5,13 @@
 	<property name="ireport.y" value="0"/>
 	<subDataset name="dataset1" uuid="6ba12f51-529d-495c-a343-6cc1362daea5"/>
 	<parameter name="PATH_WEB" class="java.lang.String" isForPrompting="false">
-		<defaultValueExpression><![CDATA["C:/Users/lucia martinez rosal/Documents/NetBeansProjects/sep-expedicion-documentos-laborales/sep-expedicion-web/src/main/webapp/"]]></defaultValueExpression>
+		<defaultValueExpression><![CDATA["C:/Proyectos SEP/Portal Autoservicios/portalServicios/sep-expedicion-documentos-laborales/sep-expedicion-web/src/main/webapp/"]]></defaultValueExpression>
 	</parameter>
 	<parameter name="pIdComprobante" class="java.lang.Integer">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
 	<parameter name="PATH_JASPER" class="java.lang.String" isForPrompting="false">
-		<defaultValueExpression><![CDATA["C:/Users/lucia martinez rosal/Documents/NetBeansProjects/sep-expedicion-documentos-laborales/sep-expedicion-web/src/main/resources/"]]></defaultValueExpression>
+		<defaultValueExpression><![CDATA["C:/Proyectos SEP/Portal Autoservicios/portalServicios/sep-expedicion-documentos-laborales/sep-expedicion-web/src/main/resources/"]]></defaultValueExpression>
 	</parameter>
 	<parameter name="pCompTimExist" class="java.lang.Integer"/>
 	<parameter name="pRfc" class="java.lang.String"/>
