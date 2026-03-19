@@ -74,7 +74,7 @@ WHERE
 			</staticText>
 			<image>
 				<reportElement uuid="57eb263f-0fce-4e34-abfc-e43287daf3ad" x="592" y="15" width="160" height="68"/>
-				<imageExpression><![CDATA["C:\\Proyectos SEP\\Portal Autoservicios\\portalServicios\\sep-expedicion-documentos-laborales\\sep-expedicion-web\\src\\main\\webapp\\static\\images\\imagotipo_GobMX.png"]]></imageExpression>
+				<imageExpression><![CDATA[$P{PATH_WEB} + "static/images/imagotipo_GobMX.png"]]></imageExpression>
 			</image>
 		</band>
 	</pageHeader>
@@ -186,7 +186,7 @@ WHERE
 		<band height="92" splitType="Stretch">
 			<image>
 				<reportElement uuid="c491d483-d2b5-4c44-ad09-b4f5b8be457d" x="41" y="0" width="670" height="92"/>
-				<imageExpression><![CDATA["C:\\Proyectos SEP\\Portal Autoservicios\\portalServicios\\sep-expedicion-documentos-laborales\\sep-expedicion-web\\src\\main\\webapp\\static\\images\\pie de pagina SEP.png"]]></imageExpression>
+				<imageExpression><![CDATA[$P{PATH_WEB} + "static/images/pie de pagina SEP.png"]]></imageExpression>
 			</image>
 		</band>
 	</pageFooter>
