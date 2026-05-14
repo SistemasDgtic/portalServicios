@@ -1,28 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
 <log4j:configuration debug="null">
+    <!-- ===================== APPENDERS ===================== -->
+    <!-- Consola -->
     <appender name="SystemOut" class="org.apache.log4j.ConsoleAppender">
         <layout class="org.apache.log4j.PatternLayout">
-            <param name="ConversionPattern"
-                               value="%d{ABSOLUTE} %5.5p %70.40c - %m%n"/>
+            <param name="ConversionPattern" value="%d{ABSOLUTE} %5.5p %70.40c - %m%n"/>
         </layout>
-    </appender>    
+    </appender>
+
     <appender name="Roller" class="org.apache.log4j.RollingFileAppender">
         <param name="File" value="${dir.log}/sep-portal.log"/>
         <param name="MaxFileSize" value="5000KB"/>
         <param name="MaxBackupIndex" value="10"/>
         <layout class="org.apache.log4j.PatternLayout">
-            <param name="ConversionPattern" value="%d{ABSOLUTE} %5.5p %70.40c - %m%n" />
+            <param name="ConversionPattern" value="%d{ABSOLUTE} %5.5p %70.40c - %m%n"/>
         </layout>
     </appender>
+
+    <!-- ===================== EMAIL DE ERRORES =============================== -->
+    <appender name="ErrorEmailAppender" class="org.apache.log4j.net.SMTPAppender">
+        <param name="SMTPHost"      value="smtp.office365.com" />
+        <param name="SMTPPort"      value="587" />
+        <param name="SMTPUsername"  value="portal.servicios@nube.sep.gob.mx" />
+        <param name="SMTPPassword"  value="Fay99117" />
+        <param name="SMTPDebug"     value="false" />
+        <param name="From"          value="portal.servicios@nube.sep.gob.mx" />
+        <param name="To"            value="aarvizu@nube.sep.gob.mx" />
+        <param name="Subject"       value="Log4J Message error Portal de Auto Servicios ${up.log}" />
+        <param name="BufferSize"    value="1" />
+        <param name="Threshold"     value="ERROR" />
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="[%x] - %p - %d - %F - %m%n"/>
+        </layout>
+    </appender>
+
     <appender name="ASYNC" class="org.apache.log4j.AsyncAppender">
-        <param name="Blocking" value="false"/>
-        <param name="BufferSize" value="10480"/>
+        <param name="Blocking"    value="false"/>
+        <param name="BufferSize"  value="10480"/>
         <appender-ref ref="Roller"/>
         <appender-ref ref="SystemOut"/>
-        <appender-ref ref="ErrorEmailAppender"/>
     </appender>
-	
+
+    <!-- ===================== LOGGERS ===================== -->
     <logger name="org.springframework.web">
         <level value="${modo.log.libs}"/>
     </logger>
@@ -49,23 +69,8 @@
     </logger>
 
     <root>
-        <priority value ="${modo.log}"/>
+        <priority value="${modo.log}"/>
         <appender-ref ref="ASYNC"/>
+        <appender-ref ref="ErrorEmailAppender"/>
     </root>
-	
-    <appender name="ErrorEmailAppender" class="org.apache.log4j.net.SMTPAppender">
-        <param name="SMTPHost" value="smtp.office365.com" />
-        <param name="SMTPPort" value="587" />
-        <param name="SMTPUsername" value="portal.servicios@nube.sep.gob.mx" />
-        <param name="SMTPPassword" value="Fay99117" />
-        <param name="From" value="portal.servicios@nube.sep.gob.mx" />
-        <param name="To" value="aarvizu@nube.sep.gob.mx" />
-        <param name="Subject" value="Log4J Message error Portal de Auto Servicios ${up.log}" />
-        <param name="BufferSize" value="1" />
-        <param name="Threshold" value="error"/>
-        <param name="EvaluatorClass" value="TriggerLogEvent" />
-        <layout class="org.apache.log4j.PatternLayout">
-            <param name="ConversionPattern" value="[%x] - %p - %d - %F - %m%n"/>
-        </layout>
-    </appender>
 </log4j:configuration>
