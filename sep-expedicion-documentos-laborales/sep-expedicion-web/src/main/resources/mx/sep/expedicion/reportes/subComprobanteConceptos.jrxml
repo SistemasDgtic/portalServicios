@@ -10,8 +10,14 @@
 		<defaultValueExpression><![CDATA["D"]]></defaultValueExpression>
 	</parameter>
 	<queryString>
-		<![CDATA[SELECT limit 21 TRIM(cc.descripcion) AS desc_concepto,
-    dc.importe        AS im_concepto,
+		<![CDATA[SELECT limit 21
+    TRIM(cc.descripcion) ||
+    CASE
+        WHEN tc.num_desc IS NULL THEN ''
+        WHEN tc.tot_desc IS NULL THEN ' DESCUENTO ' || tc.num_desc
+        ELSE ' DESCUENTO ' || tc.num_desc || ' / ' || tc.tot_desc
+    END AS desc_concepto,
+    dc.importe AS im_concepto,
     CASE
         WHEN dc.perc_ded = 'P' AND dc.concepto = 'Z1' THEN 'K1'
         WHEN dc.perc_ded = 'P' AND dc.concepto = 'Z2' THEN 'K2'
@@ -21,15 +27,16 @@
         WHEN dc.perc_ded = 'P' AND dc.concepto = 'Z6' THEN 'K6'
         WHEN dc.perc_ded = 'P' AND dc.concepto = 'Z7' THEN 'K7'
         ELSE dc.concepto
-        END AS cve_concepto
-FROM tps004_det_comprob dc,
-    tps002_cat_concept cc
-WHERE
-    (
-        dc.perc_ded = cc.perc_ded
+    END AS cve_concepto
+FROM tps004_det_comprob dc
+JOIN tps002_cat_concept cc
+    ON  dc.perc_ded = cc.perc_ded
     AND dc.concepto = cc.concepto
-    )
-AND dc.id_comprobante = $P{pIdComprobante}
+LEFT JOIN tps040_contador tc
+    ON  tc.id_comprobante = dc.id_comprobante
+    AND tc.consecutivo    = dc.consecutivo
+WHERE
+ dc.id_comprobante = $P{pIdComprobante}
 AND dc.perc_ded = '$P!{pTpoConcepto}']]>
 	</queryString>
 	<field name="desc_concepto" class="java.lang.String"/>
